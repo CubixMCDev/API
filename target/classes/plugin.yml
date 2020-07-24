@@ -1,0 +1,4 @@
+main: fr.cubixmc.api.CubixAPI
+name: CubixAPI
+version: 1.0
+author: Eliviel
