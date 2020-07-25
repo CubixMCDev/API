@@ -23,45 +23,46 @@ public class EventsListener implements Listener {
 		Player player = e.getPlayer();
 		
 		main.getPlayerDataManager().createAccount(player);
-		main.getPvPBoxManager().createPvPBoxAccount(player);
 		main.getPlayerDataManager().loadPlayerData(player);
 		
 		Ranks rank = main.getRankManager().getRank(player);
-		if(rank == Ranks.ADMIN) {
-			main.s.getTeam("aAdmin").addPlayer(player);
-			player.setPlayerListName("§cAdmin §8❘ §c" + player.getName());
-		} else if(rank == Ranks.DEV) {
-			main.s.getTeam("bDev").addPlayer(player);
-			player.setPlayerListName("§9Developer §8❘ §9" + player.getName());
-		} else if(rank == Ranks.RESPMOD) {
-			main.s.getTeam("cRespMod").addPlayer(player);
-			player.setPlayerListName("§cResp. Mod §8❘ §c" + player.getName());
-		} else if(rank == Ranks.MOD) {
-			main.s.getTeam("dMod").addPlayer(player);
-			player.setPlayerListName("§3Moderator §8❘ §3" + player.getName());
-		} else if(rank == Ranks.HELPER) {
-			main.s.getTeam("eHelp").addPlayer(player);
-			player.setPlayerListName("§bHelper §8❘ §b" + player.getName());
-		} else if(rank == Ranks.BUILDER) {
-			main.s.getTeam("fBuilder").addPlayer(player);
-			player.setPlayerListName("§2Builder §8❘ §2" + player.getName());
-		} else if(rank == Ranks.PARTNER) {
-			main.s.getTeam("gPartner").addPlayer(player);
-			player.setPlayerListName("§6Partner §8❘ §6" + player.getName());
-		} else if(rank == Ranks.FRIEND) {
-			main.s.getTeam("hFriend").addPlayer(player);
-			player.setPlayerListName("§fFriend §8❘ §f" + player.getName());
-		} else if(rank == Ranks.YOUTUBE) {
-			main.s.getTeam("iYoutube").addPlayer(player);
-			player.setPlayerListName("§6Youtube §8❘ §6" + player.getName());
-		} else if(rank == Ranks.VIPPLUS) {
-			main.s.getTeam("jVip+").addPlayer(player);
-			player.setPlayerListName("§6Vip+ §8❘ §6" + player.getName());
-		} else if(rank == Ranks.VIP) {
-			main.s.getTeam("kVip").addPlayer(player);
-			player.setPlayerListName("§eVip §8❘ §e" + player.getName());
-		} else if(rank == Ranks.PLAYER) {
-			main.s.getTeam("lPlayer").addPlayer(player);
+		if(main.teamTagOn) {
+			if(rank == Ranks.ADMIN) {
+				main.s.getTeam("aAdmin").addPlayer(player);
+				player.setPlayerListName("§cAdmin §8❘ §c" + player.getName());
+			} else if(rank == Ranks.DEV) {
+				main.s.getTeam("bDev").addPlayer(player);
+				player.setPlayerListName("§9Developer §8❘ §9" + player.getName());
+			} else if(rank == Ranks.RESPMOD) {
+				main.s.getTeam("cRespMod").addPlayer(player);
+				player.setPlayerListName("§cResp. Mod §8❘ §c" + player.getName());
+			} else if(rank == Ranks.MOD) {
+				main.s.getTeam("dMod").addPlayer(player);
+				player.setPlayerListName("§3Moderator §8❘ §3" + player.getName());
+			} else if(rank == Ranks.HELPER) {
+				main.s.getTeam("eHelp").addPlayer(player);
+				player.setPlayerListName("§bHelper §8❘ §b" + player.getName());
+			} else if(rank == Ranks.BUILDER) {
+				main.s.getTeam("fBuilder").addPlayer(player);
+				player.setPlayerListName("§2Builder §8❘ §2" + player.getName());
+			} else if(rank == Ranks.PARTNER) {
+				main.s.getTeam("gPartner").addPlayer(player);
+				player.setPlayerListName("§6Partner §8❘ §6" + player.getName());
+			} else if(rank == Ranks.FRIEND) {
+				main.s.getTeam("hFriend").addPlayer(player);
+				player.setPlayerListName("§fFriend §8❘ §f" + player.getName());
+			} else if(rank == Ranks.YOUTUBE) {
+				main.s.getTeam("iYoutube").addPlayer(player);
+				player.setPlayerListName("§6Youtube §8❘ §6" + player.getName());
+			} else if(rank == Ranks.VIPPLUS) {
+				main.s.getTeam("jVip+").addPlayer(player);
+				player.setPlayerListName("§6Vip+ §8❘ §6" + player.getName());
+			} else if(rank == Ranks.VIP) {
+				main.s.getTeam("kVip").addPlayer(player);
+				player.setPlayerListName("§eVip §8❘ §e" + player.getName());
+			} else if(rank == Ranks.PLAYER) {
+				main.s.getTeam("lPlayer").addPlayer(player);
+			}
 		}
 		
 	}

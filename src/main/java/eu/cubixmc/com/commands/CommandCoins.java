@@ -26,6 +26,9 @@ public class CommandCoins implements CommandExecutor {
 			if(args.length == 0) {
 				int balance = main.getEcoManager().getBalanceCoins(p);
 				p.sendMessage("§6[§eCubixMC§6]§e Vous possedez §6" + balance + " §ecoins.");
+				main.scTeam.registerTeamTag(main.teamTagOn ? false : true);
+				p.sendMessage("TeamTag : " + main.teamTagOn);
+				return true;
 			}
 			
 			if(main.getRankManager().getRank(p).getPower() < 100) {

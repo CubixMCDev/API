@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import eu.cubixmc.com.DataBase.SqlConnection;
+import eu.cubixmc.com.database.SqlConnection;
 import eu.cubixmc.com.commands.CommandCoins;
 import eu.cubixmc.com.commands.CommandCredits;
 import eu.cubixmc.com.commands.CommandRank;
@@ -39,13 +39,13 @@ public class CubixAPI extends JavaPlugin implements Listener {
 	private MuteManager muteManager = new MuteManager(this);
 	private EcoManager ecoManager = new EcoManager(this);
 	private RankManager rankManager = new RankManager(this);
-	private PvPBoxManager pvpBoxManager = new PvPBoxManager(this);
 	private ModManager modManager = new ModManager(this);
 	private FriendsManager friendsManager = new FriendsManager(this);
 	private PartyManager partyManager = new PartyManager(this);
 	private ExpManager expManager = new ExpManager(this);
 	
 	public ScoarboardTeam scTeam = new ScoarboardTeam(this);
+	public boolean teamTagOn = true;
 	
 	public Scoreboard s;
 	
@@ -60,7 +60,7 @@ public class CubixAPI extends JavaPlugin implements Listener {
 		
 		sql = new SqlConnection("jdbc:mysql://", "localhost", base, id, mdp);
 		sql.connection();
-		
+
 		getCommand("coins").setExecutor(commandCoin);
 		getCommand("credits").setExecutor(commandCredits);
 		getCommand("ban").setExecutor(banManager);
@@ -75,10 +75,10 @@ public class CubixAPI extends JavaPlugin implements Listener {
 		
 		banManager.loadBannedPlayer();
 		muteManager.loadMutedPlayer();
-		scTeam.registerTeamTag();
+		scTeam.registerTeamTag(true);
 		
 	}
-	
+
 	@Override
 	public void onDisable() {
 		sql.disconnect();
@@ -111,10 +111,6 @@ public class CubixAPI extends JavaPlugin implements Listener {
 
 	public RankManager getRankManager() {
 		return rankManager;
-	}
-
-	public PvPBoxManager getPvPBoxManager() {
-		return pvpBoxManager;
 	}
 
 	public ModManager getModManager() {
