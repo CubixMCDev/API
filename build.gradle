@@ -12,7 +12,6 @@ repositories {
     maven {
         url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots/')
     }
-
     maven {
         url = uri('http://repo.maven.apache.org/maven2')
     }
@@ -34,7 +33,7 @@ dependencies {
 }
 
 group = 'cubixmc.com'
-version = '1.0-SNAPSHOT'
+version = ''
 sourceCompatibility = '1.8'
 
 publishing {

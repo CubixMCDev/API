@@ -44,7 +44,7 @@ public class CubixAPI extends JavaPlugin implements Listener {
 	private PartyManager partyManager = new PartyManager(this);
 	private ExpManager expManager = new ExpManager(this);
 	
-	public ScoarboardTeam scTeam = new ScoarboardTeam(this);
+	private ScoarboardTeam scTeam = new ScoarboardTeam(this);
 	public boolean teamTagOn = true;
 	
 	public Scoreboard s;
@@ -128,5 +128,7 @@ public class CubixAPI extends JavaPlugin implements Listener {
 	public PartyManager getPartyManager() {
 		return partyManager;
 	}
+
+	public ScoarboardTeam getScTeam() { return scTeam; }
 
 }
