@@ -1,0 +1,125 @@
+host: 'localhost'
+port: 3306
+username: 'Cubix'
+password: 'CubixTMPlanet2019'
+database: 'cubixbase'
+
+ranks:
+  player:
+    id: player
+    colorChat: GRAY
+    prefixTab: '&7'
+    prefixAboveHead: '&7'
+    rankToString: '&7Player'
+    perms:
+      - 'coins.fetch'
+      - 'credits.fetch'
+      - 'servers.switch'
+    default: true
+  vip:
+    id: vip
+    prefixTab: '&eVIP | '
+    prefixAboveHead: '&eVIP &8|&e '
+    rankToString: '&eVIP'
+    colorChat: WHITE
+    perms:
+      - 'cow.disguise'
+    inherit:
+      - player
+  vip+:
+    id: vip+
+    prefixTab: '&6VIP+ | '
+    prefixAboveHead: '&6VIP+ &8|&6 '
+    rankToString: '&6VIP+'
+    colorChat: WHITE
+    perms:
+      - 'enderman.disguise'
+    inherit:
+      - vip
+  youtuber:
+    id: youtuber
+    prefixTab: '&6Ytb | '
+    prefixAboveHead: '&6Youtube &8| &6'
+    rankToString: '&6Youtuber'
+    colorChat: WHITE
+    perms:
+      - 'nick.use'
+    inherit:
+      - vip+
+  friend:
+    id: friend
+    prefixTab: '&fFriend | '
+    prefixAboveHead: '&fFriend &8| &f'
+    rankToString: '&fFriend'
+    colorChat: WHITE
+    perms:
+      - 'staff.chat'
+    inherit:
+      - vip+
+  partner:
+    id: partner
+    prefixTab: '&6Partner | '
+    prefixAboveHead: '&6Partner &8| &6'
+    rankToString: '&6Partner'
+    colorChat: WHITE
+    perms:
+      - 'partner.use'
+    inherit:
+      - player
+  builder:
+    id: builder
+    prefixTab: '&2Builder | '
+    prefixAboveHead: '&2Builder &8| &2'
+    rankToString: '&2Builder'
+    colorChat: WHITE
+    perms:
+      - 'build.use'
+    inherit:
+      - vip+
+  helper:
+    id: helper
+    prefixTab: '&bHelper | '
+    prefixAboveHead: '&bHelper &8| &b'
+    rankToString: '&bHelper'
+    colorChat: WHITE
+    perms:
+      - 'mute.use'
+      - 'kick.use'
+    inherit:
+      - player
+  moderator:
+    id: moderator
+    prefixTab: '&3Mod | '
+    prefixAboveHead: '&3Moderator &8| &3'
+    rankToString: '&3Moderator'
+    colorChat: WHITE
+    perms:
+      - 'ban.use'
+    inherit:
+      - helper
+  resp_mod:
+    id: resp_mod
+    prefixTab: '&cR. Mod | '
+    prefixAboveHead: '&cResp. Mod &8| &c'
+    rankToString: '&cResp. Modération'
+    colorChat: WHITE
+    perms:
+      - 'block.staff.use'
+    inherit:
+      - moderator
+  developer:
+    id: developer
+    prefixTab: '&9Developer | '
+    prefixAboveHead: '&9Developer &8| &9'
+    rankToString: '&9Developer'
+    colorChat: WHITE
+    perms:
+      - '*'
+  admin:
+    id: admin
+    prefixTab: '&cAdmin | '
+    prefixAboveHead: '&cAdmin &8| &c'
+    rankToString: '&cAdmin'
+    colorChat: RED
+    perms:
+      - '*'

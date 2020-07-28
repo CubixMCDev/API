@@ -1,4 +1,4 @@
-package eu.cubixmc.com.data;
+package eu.cubixmc.com.data.sanctions;
 
 import java.util.UUID;
 
