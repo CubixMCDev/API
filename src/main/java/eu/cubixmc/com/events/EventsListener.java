@@ -30,40 +30,40 @@ public class EventsListener implements Listener {
 
 		if(rankId.equalsIgnoreCase("admin")) {
 			plugin.s.getTeam("aadmin").addPlayer(player);
-			player.setPlayerListName(Color.color(plugin.getConfig().getString("ranks.admin.prefixAboveHead") + player.getName()));
+			player.setPlayerListName("§cAdmin §8|§c " + player.getName());
 		} else if(rankId.equalsIgnoreCase("developer")) {
 			plugin.s.getTeam("bdeveloper").addPlayer(player);
-			player.setPlayerListName(Color.color(plugin.getConfig().getString("ranks.developer.prefixAboveHead") + player.getName()));
+			player.setPlayerListName("§9Developer §8|§9 " + player.getName());
 		} else if(rankId.equalsIgnoreCase("resp_mod")) {
 			plugin.s.getTeam("cresp_mod").addPlayer(player);
-			player.setPlayerListName(Color.color(plugin.getConfig().getString("ranks.resp_mod.prefixAboveHead") + player.getName()));
+			player.setPlayerListName("§cR. Mod §8|§c " + player.getName());
 		} else if(rankId.equalsIgnoreCase("moderator")) {
 			plugin.s.getTeam("dmoderator").addPlayer(player);
-			player.setPlayerListName(Color.color(plugin.getConfig().getString("ranks.moderator.prefixAboveHead") + player.getName()));
+			player.setPlayerListName("§3Mod §8|§3 " + player.getName());
 		} else if(rankId.equalsIgnoreCase("helper")) {
 			plugin.s.getTeam("ehelper").addPlayer(player);
-			player.setPlayerListName(Color.color(plugin.getConfig().getString("ranks.helper.prefixAboveHead") + player.getName()));
+			player.setPlayerListName("§bHelper §8|§b " + player.getName());
 		} else if(rankId.equalsIgnoreCase("builder")) {
 			plugin.s.getTeam("fbuilder").addPlayer(player);
-			player.setPlayerListName(Color.color(plugin.getConfig().getString("ranks.builder.prefixAboveHead") + player.getName()));
+			player.setPlayerListName("§2Builder §8|§2 " + player.getName());
 		} else if(rankId.equalsIgnoreCase("partner")) {
 			plugin.s.getTeam("gpartner").addPlayer(player);
-			player.setPlayerListName(Color.color(plugin.getConfig().getString("ranks.partner.prefixAboveHead") + player.getName()));
+			player.setPlayerListName("§6Partner §8|§6 " + player.getName());
 		} else if(rankId.equalsIgnoreCase("friend")) {
 			plugin.s.getTeam("hfriend").addPlayer(player);
-			player.setPlayerListName(Color.color(plugin.getConfig().getString("ranks.friend.prefixAboveHead") + player.getName()));
+			player.setPlayerListName("§fFriend §8|§f " + player.getName());
 		} else if(rankId.equalsIgnoreCase("youtuber")) {
 			plugin.s.getTeam("iyoutuber").addPlayer(player);
-			player.setPlayerListName(Color.color(plugin.getConfig().getString("ranks.youtuber.prefixAboveHead") + player.getName()));
+			player.setPlayerListName("§6Ytb §8|§6 " + player.getName());
 		} else if(rankId.equalsIgnoreCase("vip+")) {
 			plugin.s.getTeam("jvip+").addPlayer(player);
-			player.setPlayerListName(Color.color(plugin.getConfig().getString("ranks.vip+.prefixAboveHead") + player.getName()));
+			player.setPlayerListName("§6VIP+ §8|§6 " + player.getName());
 		} else if(rankId.equalsIgnoreCase("vip")) {
 			plugin.s.getTeam("kvip").addPlayer(player);
-			player.setPlayerListName(Color.color(plugin.getConfig().getString("ranks.vip.prefixAboveHead") + player.getName()));
+			player.setPlayerListName("§eVIP §8|§e " + player.getName());
 		} else if(rankId.equalsIgnoreCase("player")) {
 			plugin.s.getTeam("lplayer").addPlayer(player);
-			player.setPlayerListName(Color.color(plugin.getConfig().getString("ranks.player.prefixAboveHead") + player.getName()));
+			player.setPlayerListName("§7" + player.getName());
 		}
 
 	}
@@ -75,12 +75,10 @@ public class EventsListener implements Listener {
 		plugin.getUserManager().removeUser(e.getPlayer().getUniqueId());
 	}
 
-	/*
+
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e) {
 		Player player = e.getPlayer();
-		
-		Ranks rank = main.getRankManager().getRank(player);
 		
 		if(plugin.muted.containsKey(player.getUniqueId())) {
 			if(plugin.getMuteManager().isMuted(player.getUniqueId())) {
@@ -93,7 +91,5 @@ public class EventsListener implements Listener {
 		}
 
 	}
-
-	 */
 	
 }
