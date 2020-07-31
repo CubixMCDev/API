@@ -7,8 +7,9 @@ database: 'cubixbase'
 ranks:
   player:
     id: player
+    rankToString: 'Player'
+    rankColor: GRAY
     colorChat: GRAY
-    rankToString: '§7Player'
     perms:
       - 'coins.fetch'
       - 'credits.fetch'
@@ -16,7 +17,8 @@ ranks:
     default: true
   vip:
     id: vip
-    rankToString: '§eVIP'
+    rankToString: 'VIP'
+    rankColor: YELLOW
     colorChat: WHITE
     perms:
       - 'cow.disguise'
@@ -24,7 +26,8 @@ ranks:
       - player
   vip+:
     id: vip+
-    rankToString: '§6VIP+'
+    rankToString: 'VIP+'
+    rankColor: GOLD
     colorChat: WHITE
     perms:
       - 'enderman.disguise'
@@ -32,7 +35,8 @@ ranks:
       - vip
   youtuber:
     id: youtuber
-    rankToString: '§6Youtuber'
+    rankToString: 'Youtuber'
+    rankColor: GOLD
     colorChat: WHITE
     perms:
       - 'nick.use'
@@ -40,7 +44,8 @@ ranks:
       - vip+
   friend:
     id: friend
-    rankToString: '§fFriend'
+    rankToString: 'Friend'
+    rankColor: WHITE
     colorChat: WHITE
     perms:
       - 'staff.chat'
@@ -48,7 +53,8 @@ ranks:
       - vip+
   partner:
     id: partner
-    rankToString: '§6Partner'
+    rankToString: 'Partner'
+    rankColor: GOLD
     colorChat: WHITE
     perms:
       - 'partner.use'
@@ -56,7 +62,8 @@ ranks:
       - player
   builder:
     id: builder
-    rankToString: '§2Builder'
+    rankToString: 'Builder'
+    rankColor: DARK_GREEN
     colorChat: WHITE
     perms:
       - 'build.use'
@@ -64,7 +71,8 @@ ranks:
       - vip+
   helper:
     id: helper
-    rankToString: '§bHelper'
+    rankToString: 'Helper'
+    rankColor: AQUA
     colorChat: WHITE
     perms:
       - 'mute.use'
@@ -73,7 +81,8 @@ ranks:
       - player
   moderator:
     id: moderator
-    rankToString: '§3Moderator'
+    rankToString: 'Moderator'
+    rankColor: DARK_AQUA
     colorChat: WHITE
     perms:
       - 'ban.use'
@@ -81,7 +90,8 @@ ranks:
       - helper
   resp_mod:
     id: resp_mod
-    rankToString: '§cResp. Modération'
+    rankToString: 'Resp. Modération'
+    rankColor: RED
     colorChat: WHITE
     perms:
       - 'block.staff.use'
@@ -89,13 +99,15 @@ ranks:
       - moderator
   developer:
     id: developer
-    rankToString: '§9Developer'
+    rankToString: 'Developer'
+    rankColor: BLUE
     colorChat: WHITE
     perms:
       - '*'
   admin:
     id: admin
-    rankToString: '§cAdmin'
+    rankToString: 'Admin'
+    rankColor: RED
     colorChat: RED
     perms:
       - '*'

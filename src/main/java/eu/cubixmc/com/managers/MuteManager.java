@@ -179,12 +179,12 @@ public class MuteManager implements CommandExecutor {
 				mute.setReason(reason);
 				mute.setUuid(uuid);
 
-				plugin.muted.put(uuid, mute);
+				plugin.getMuted().put(uuid, mute);
 
 			}
 		});
 		
-		System.out.println(plugin.muted.size() + " joueurs ont été mute sur le serveur.");
+		System.out.println(plugin.getMuted().size() + " joueurs ont été mute sur le serveur.");
 		
 	}
 	
@@ -232,18 +232,18 @@ public class MuteManager implements CommandExecutor {
         MutePlayerData mute = new MutePlayerData();
         mute.setUuid(targetUUID);
         mute.setReason(raison);
-        plugin.muted.put(targetUUID, mute);
+        plugin.getMuted().put(targetUUID, mute);
 		
 	}
 
 	public void unmutePlayer(CommandSender sender, UUID targetUUID, String name){
 	       
-        if(!plugin.muted.containsKey(targetUUID)){
+        if(!plugin.getMuted().containsKey(targetUUID)){
             sender.sendMessage("§6Le joueur n'est pas présent dans le répertoire des joueurs muted !" );
             return;
         }
        
-        plugin.muted.remove(targetUUID);
+        plugin.getMuted().remove(targetUUID);
         sender.sendMessage("§c"+ name +"§6 § été unmute !");
 
         int previousMutes = getNumberOfPreviousMutes(targetUUID);

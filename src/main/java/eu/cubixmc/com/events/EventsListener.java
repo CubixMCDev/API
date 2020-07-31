@@ -2,12 +2,9 @@ package eu.cubixmc.com.events;
 
 import eu.cubixmc.com.CubixAPI;
 import eu.cubixmc.com.data.User;
-import eu.cubixmc.com.file.Color;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -29,40 +26,40 @@ public class EventsListener implements Listener {
 		String rankId = user.getRankID();
 
 		if(rankId.equalsIgnoreCase("admin")) {
-			plugin.s.getTeam("aadmin").addPlayer(player);
+			plugin.getS().getTeam("aadmin").addPlayer(player);
 			player.setPlayerListName("§cAdmin §8|§c " + player.getName());
 		} else if(rankId.equalsIgnoreCase("developer")) {
-			plugin.s.getTeam("bdeveloper").addPlayer(player);
+			plugin.getS().getTeam("bdeveloper").addPlayer(player);
 			player.setPlayerListName("§9Developer §8|§9 " + player.getName());
 		} else if(rankId.equalsIgnoreCase("resp_mod")) {
-			plugin.s.getTeam("cresp_mod").addPlayer(player);
+			plugin.getS().getTeam("cresp_mod").addPlayer(player);
 			player.setPlayerListName("§cR. Mod §8|§c " + player.getName());
 		} else if(rankId.equalsIgnoreCase("moderator")) {
-			plugin.s.getTeam("dmoderator").addPlayer(player);
+			plugin.getS().getTeam("dmoderator").addPlayer(player);
 			player.setPlayerListName("§3Mod §8|§3 " + player.getName());
 		} else if(rankId.equalsIgnoreCase("helper")) {
-			plugin.s.getTeam("ehelper").addPlayer(player);
+			plugin.getS().getTeam("ehelper").addPlayer(player);
 			player.setPlayerListName("§bHelper §8|§b " + player.getName());
 		} else if(rankId.equalsIgnoreCase("builder")) {
-			plugin.s.getTeam("fbuilder").addPlayer(player);
+			plugin.getS().getTeam("fbuilder").addPlayer(player);
 			player.setPlayerListName("§2Builder §8|§2 " + player.getName());
 		} else if(rankId.equalsIgnoreCase("partner")) {
-			plugin.s.getTeam("gpartner").addPlayer(player);
+			plugin.getS().getTeam("gpartner").addPlayer(player);
 			player.setPlayerListName("§6Partner §8|§6 " + player.getName());
 		} else if(rankId.equalsIgnoreCase("friend")) {
-			plugin.s.getTeam("hfriend").addPlayer(player);
+			plugin.getS().getTeam("hfriend").addPlayer(player);
 			player.setPlayerListName("§fFriend §8|§f " + player.getName());
 		} else if(rankId.equalsIgnoreCase("youtuber")) {
-			plugin.s.getTeam("iyoutuber").addPlayer(player);
+			plugin.getS().getTeam("iyoutuber").addPlayer(player);
 			player.setPlayerListName("§6Ytb §8|§6 " + player.getName());
 		} else if(rankId.equalsIgnoreCase("vip+")) {
-			plugin.s.getTeam("jvip+").addPlayer(player);
+			plugin.getS().getTeam("jvip+").addPlayer(player);
 			player.setPlayerListName("§6VIP+ §8|§6 " + player.getName());
 		} else if(rankId.equalsIgnoreCase("vip")) {
-			plugin.s.getTeam("kvip").addPlayer(player);
+			plugin.getS().getTeam("kvip").addPlayer(player);
 			player.setPlayerListName("§eVIP §8|§e " + player.getName());
 		} else if(rankId.equalsIgnoreCase("player")) {
-			plugin.s.getTeam("lplayer").addPlayer(player);
+			plugin.getS().getTeam("lplayer").addPlayer(player);
 			player.setPlayerListName("§7" + player.getName());
 		}
 
@@ -80,13 +77,13 @@ public class EventsListener implements Listener {
 	public void onChat(AsyncPlayerChatEvent e) {
 		Player player = e.getPlayer();
 		
-		if(plugin.muted.containsKey(player.getUniqueId())) {
+		if(plugin.getMuted().containsKey(player.getUniqueId())) {
 			if(plugin.getMuteManager().isMuted(player.getUniqueId())) {
 				player.sendMessage("§cVous êtes mute !");
 				e.setCancelled(true);
 				return;
 			} else {
-				plugin.muted.remove(player.getUniqueId());
+				plugin.getMuted().remove(player.getUniqueId());
 			}
 		}
 

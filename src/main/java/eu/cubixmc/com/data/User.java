@@ -1,11 +1,11 @@
 package eu.cubixmc.com.data;
 
 import eu.cubixmc.com.CubixAPI;
-import eu.cubixmc.com.file.Color;
 import eu.cubixmc.com.ranks.Rank;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -57,6 +57,10 @@ public class User {
 	public void removeCredits(int amount) {
 		credits -= amount;
 	}
+
+	public void addExp(int amount) { exp += amount; }
+
+	public void removeExp(int amount) { exp -= amount; }
 
 	public String permsToStr() {
 		StringBuilder builder = new StringBuilder();
@@ -174,12 +178,14 @@ public class User {
 		}
 	}
 
-	public String getRankToString() {
+	public String getRankToStringWithColor() {
+		String str;
 		if(secondaryRank != null) {
-			return Color.color(CubixAPI.getInstance().getConfig().getString("ranks." + secondaryRank.getId() + ".rankToString"));
+			str = ChatColor.valueOf(CubixAPI.getInstance().getConfig().getString("ranks." + secondaryRank.getId() + ".rankColor")) + "" + CubixAPI.getInstance().getConfig().getString("ranks." + secondaryRank.getId() + ".rankToString");
 		} else {
-			return Color.color(CubixAPI.getInstance().getConfig().getString("ranks." + primaryRank.getId() + ".rankToString"));
+			str = ChatColor.valueOf(CubixAPI.getInstance().getConfig().getString("ranks." + primaryRank.getId() + ".rankColor")) + "" + CubixAPI.getInstance().getConfig().getString("ranks." + secondaryRank.getId() + ".rankToString");
 		}
+		return str;
 	}
 
 	public String getRankID() {

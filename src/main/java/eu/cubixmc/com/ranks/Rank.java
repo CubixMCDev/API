@@ -1,5 +1,6 @@
 package eu.cubixmc.com.ranks;
 
+import eu.cubixmc.com.CubixAPI;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.ChatColor;
@@ -21,4 +22,7 @@ public class Rank {
         this.permissions = perms;
     }
 
+    public String getRankToStringWithColor() {
+        return ChatColor.valueOf(CubixAPI.getInstance().getConfig().getString("ranks." + id + ".rankColor")) + "" + CubixAPI.getInstance().getConfig().getString("ranks." + id + ".rankToString");
+    }
 }

@@ -174,12 +174,12 @@ public class BanManager implements CommandExecutor {
 				ban.setReason(reason);
 				ban.setUuid(uuid);
 
-				plugin.banned.put(uuid, ban);
+				plugin.getBanned().put(uuid, ban);
 
 			}
 		});
 		
-		System.out.println(plugin.banned.size() + " joueurs ont été ban sur le serveur.");
+		System.out.println(plugin.getBanned().size() + " joueurs ont été ban sur le serveur.");
 		
 	}
 
@@ -241,18 +241,18 @@ public class BanManager implements CommandExecutor {
         BanPlayerData ban = new BanPlayerData();
         ban.setUuid(targetUUID);
         ban.setReason(raison);
-        plugin.banned.put(targetUUID, ban);
+        plugin.getBanned().put(targetUUID, ban);
 
 	}
 
 	public void unbanPlayer(CommandSender sender, UUID targetUUID, String targetName){
 	       
-        if(!plugin.banned.containsKey(targetUUID)){
+        if(!plugin.getBanned().containsKey(targetUUID)){
             sender.sendMessage("§6Le joueur n'est pas présent dans le répertoire des joueurs banned !" );
             return;
         }
 
-		plugin.banned.remove(targetUUID);
+		plugin.getBanned().remove(targetUUID);
         sender.sendMessage("§c"+ targetName +"§6 à été unban !");
        
         int nb = getNumberOfPreviousBans(targetUUID, getLastBan(targetUUID)) - 1;

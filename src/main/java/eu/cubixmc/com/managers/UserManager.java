@@ -1,7 +1,7 @@
-package eu.cubixmc.com.data;
+package eu.cubixmc.com.managers;
 
 import eu.cubixmc.com.CubixAPI;
-import org.bukkit.Bukkit;
+import eu.cubixmc.com.data.User;
 import org.bukkit.entity.Player;
 
 import javax.sql.rowset.CachedRowSet;
@@ -56,7 +56,7 @@ public class UserManager {
                     user.setSecondaryRank(plugin.getIdToRank().get(set.getString("secondary_rank").toLowerCase()));
                 }
                 user.loadPerms(set.getString("perms"), plugin);
-                user.setLevel(set.getInt("level"));
+                user.setLevel(plugin.get().getLvlfromExp(set.getInt("exp")));
                 user.setExp(set.getInt("exp"));
                 users.put(uuid, user);
             }

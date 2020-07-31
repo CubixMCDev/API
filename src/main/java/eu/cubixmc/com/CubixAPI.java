@@ -6,10 +6,10 @@ import java.util.UUID;
 
 import eu.cubixmc.com.commands.CommandCoins;
 import eu.cubixmc.com.commands.CommandCredits;
-import eu.cubixmc.com.data.UserManager;
+import eu.cubixmc.com.managers.*;
+import eu.cubixmc.com.encapsulation.Get;
+import eu.cubixmc.com.encapsulation.Set;
 import eu.cubixmc.com.events.EventsListener;
-import eu.cubixmc.com.managers.BanManager;
-import eu.cubixmc.com.managers.MuteManager;
 import eu.cubixmc.com.ranks.Rank;
 import eu.cubixmc.com.data.sanctions.BanPlayerData;
 import eu.cubixmc.com.data.sanctions.MutePlayerData;
@@ -34,30 +34,33 @@ public class CubixAPI extends JavaPlugin implements Listener {
 		return instance;
 	}
 
-	public Map<Player, User> dataPlayers = new HashMap<>();
-	public Map<UUID, BanPlayerData> banned = new HashMap<>();
-	public Map<UUID, MutePlayerData> muted = new HashMap<>();
+	private Map<Player, User> dataPlayers = new HashMap<>();
+	private Map<UUID, BanPlayerData> banned = new HashMap<>();
+	private Map<UUID, MutePlayerData> muted = new HashMap<>();
 
 	private final Map<String, Rank> idToRank = new HashMap<>();
 	private Rank defaultRank;
 
+	private Get get;
+	private Set set;
 	private UserManager userManager;
 	private BanManager banManager;
 	private MuteManager muteManager;
-	//private ModManager modManager = new ModManager(this);
-	//private FriendsManager friendsManager = new FriendsManager(this);
-	//private PartyManager partyManager = new PartyManager(this);
-	//private ExpManager expManager = new ExpManager(this);
+	private ModManager modManager;
+	private FriendsManager friendsManager;
+	private PartyManager partyManager;
 	private MysqlManager databaseManager;
 	
 	private ScoarboardTeam scTeam;
-	public boolean teamTagOn = true;
+	private boolean teamTagOn = true;
 	
-	public Scoreboard s;
+	private Scoreboard s;
 	
 	@Override
 	public void onEnable() {
 		instance = this;
+		get = new Get(this);
+		set = new Set(this);
 		/* ENABLE WHEN RELEASING ON ALL SERVERS AT THE SAME TIME
 		File configFile = new File(this.getDataFolder(), "config.yml");
 		if(configFile.exists()) configFile.delete();
@@ -69,6 +72,10 @@ public class CubixAPI extends JavaPlugin implements Listener {
 		scTeam = new ScoarboardTeam(this);
 		banManager = new BanManager(this);
 		muteManager = new MuteManager(this);
+		modManager = new ModManager(this);
+		friendsManager = new FriendsManager(this);
+		partyManager = new PartyManager(this);
+
 		loadRanks();
 		registerCommands();
 
@@ -118,5 +125,13 @@ public class CubixAPI extends JavaPlugin implements Listener {
 	private void loadConfig() {
 		getConfig().options().copyDefaults(true);
 		saveConfig();
+	}
+
+	public Get get() {
+		return get;
+	}
+
+	public Set set(){
+		return set;
 	}
 }
