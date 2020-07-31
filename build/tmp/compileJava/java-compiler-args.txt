@@ -25,12 +25,15 @@ C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\jav
 C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\data\\sanctions\\BanPlayerData.java
 C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\data\\sanctions\\MutePlayerData.java
 C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\data\\User.java
-C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\data\\UserManager.java
 C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\encapsulation\\Get.java
 C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\encapsulation\\Set.java
 C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\events\\EventsListener.java
 C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\managers\\BanManager.java
+C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\managers\\FriendsManager.java
+C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\managers\\ModManager.java
 C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\managers\\MuteManager.java
+C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\managers\\PartyManager.java
+C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\managers\\UserManager.java
 C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\ranks\\Rank.java
 C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\ranks\\ScoarboardTeam.java
 C:\\Users\\rayan\\IdeaProjects\\MyProjects\\MyProjects\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\sql\\controllers\\ManipulationMysqlController.java

@@ -37,11 +37,33 @@ public class UserManager {
         plugin.getDatabaseManager().performAsyncUpdate("INSERT INTO `players`(`uuid`) VALUES(?);", user.getUuid().toString());
     }
 
+    private void createNewUtilsAccount(UUID uuid) {
+        plugin.getDatabaseManager().performAsyncUpdate("INSERT INTO `utils`(`uuid`) VALUES(?);", uuid.toString());
+    }
+
+    private void createNewCosmeticsAccount(UUID uuid) {
+        plugin.getDatabaseManager().performAsyncUpdate("INSERT INTO `cosmetics`(`uuid`) VALUES(?);", uuid.toString());
+    }
+
     public void fetchUserFromDataBase(UUID playerUUID) {
 
         if(!hasAccount(playerUUID)){
             createNewUser(playerUUID);
+            if(!hasUtilsAccount(playerUUID)) {
+                createNewUtilsAccount(playerUUID);
+            }
+            if(!hasCosmeticsAccount(playerUUID)) {
+                createNewUtilsAccount(playerUUID);
+            }
             return;
+        }
+
+        if(!hasUtilsAccount(playerUUID)) {
+            createNewUtilsAccount(playerUUID);
+        }
+
+        if(!hasCosmeticsAccount(playerUUID)) {
+            createNewUtilsAccount(playerUUID);
         }
 
         try {
@@ -108,6 +130,32 @@ public class UserManager {
     public boolean hasAccount(UUID playerUUID) {
         try {
             CachedRowSet set = plugin.getDatabaseManager().performQuery("SELECT uuid FROM players WHERE uuid = ?", playerUUID.toString());
+            if (set.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error performing SQL query: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public boolean hasUtilsAccount(UUID playerUUID) {
+        try {
+            CachedRowSet set = plugin.getDatabaseManager().performQuery("SELECT uuid FROM utils WHERE uuid = ?", playerUUID.toString());
+            if (set.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error performing SQL query: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean hasCosmeticsAccount(UUID playerUUID) {
+        try {
+            CachedRowSet set = plugin.getDatabaseManager().performQuery("SELECT uuid FROM cosmetics WHERE uuid = ?", playerUUID.toString());
             if (set.next()) {
                 return true;
             }
