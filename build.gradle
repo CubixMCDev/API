@@ -80,5 +80,10 @@ dependencies {
     compile (name: 'spigot-1.8.8', ext:'jar')
 }
 
+shadowJar {
+    dependencies {
+        exclude(dependency(name: 'spigot-1.8.8', ext:'jar'))
+    }
+}
 
 build.dependsOn shadowJar

@@ -4,7 +4,10 @@ import eu.cubixmc.com.CubixAPI;
 import eu.cubixmc.com.data.User;
 import eu.cubixmc.com.sql.MysqlManager;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
+import javax.sql.rowset.CachedRowSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -17,6 +20,24 @@ public class Get {
     //database
     public MysqlManager getDataBase() {
         return plugin.getDatabaseManager();
+    }
+
+    //mod
+    public boolean isInMod(UUID playerUUID) {
+        try {
+            CachedRowSet set = plugin.getDatabaseManager().performQuery("SELECT modmode FROM utils WHERE uuid = ?", playerUUID.toString());
+            if (set.next()) {
+                if(set.getInt("modmode") == 1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error performing SQL query: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
+            e.printStackTrace();
+        }
+        return false;
     }
 
     // economie
@@ -51,6 +72,10 @@ public class Get {
             return user.getRankToStringWithColor();
         }
         return "§7Player";
+    }
+
+    public ChatColor getRankColor(UUID playerUUID) {
+        return ChatColor.valueOf(plugin.getConfig().getString("ranks." + getRankID(playerUUID) + ".rankColor"));
     }
 
     //exp
@@ -111,5 +136,15 @@ public class Get {
             solutions.add(null);
         }
         return solutions.get(0);
+    }
+
+    //ban
+    public boolean isBanned(UUID playerUUID) {
+        return plugin.getBanManager().isBanned(playerUUID);
+    }
+
+    //mute
+    public boolean isMuted(UUID playerUUID) {
+        return plugin.getMuteManager().isMuted(playerUUID);
     }
 }
