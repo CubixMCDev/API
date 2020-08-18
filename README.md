@@ -1,4 +1,4 @@
-# CubixAPI
+![Logo](https://i.imgur.com/sVQVZAT.png)
 
 Main core for CubixMC API
 
