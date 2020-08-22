@@ -22,6 +22,8 @@ ranks:
     colorChat: WHITE
     perms:
       - 'cow.disguise'
+      - 'joinquit.message'
+      - 'fly.hub'
     inherit:
       - player
   vip+:
@@ -31,6 +33,8 @@ ranks:
     colorChat: WHITE
     perms:
       - 'enderman.disguise'
+      - 'joinquit.message'
+      - 'fly.hub'
     inherit:
       - vip
   youtuber:
@@ -40,6 +44,8 @@ ranks:
     colorChat: WHITE
     perms:
       - 'nick.use'
+      - 'joinquit.message'
+      - 'fly.hub'
     inherit:
       - vip+
   friend:
@@ -49,6 +55,8 @@ ranks:
     colorChat: WHITE
     perms:
       - 'staff.chat'
+      - 'joinquit.message'
+      - 'fly.hub'
     inherit:
       - vip+
   partner:
@@ -58,6 +66,7 @@ ranks:
     colorChat: WHITE
     perms:
       - 'partner.use'
+      - 'fly.hub'
     inherit:
       - player
   builder:
@@ -67,6 +76,9 @@ ranks:
     colorChat: WHITE
     perms:
       - 'build.use'
+      - 'joinquit.message'
+      - 'fly.hub'
+      - 'queues.bypass'
     inherit:
       - vip+
   helper:
@@ -77,6 +89,9 @@ ranks:
     perms:
       - 'mute.use'
       - 'kick.use'
+      - 'joinquit.message'
+      - 'fly.hub'
+      - 'queues.bypass'
     inherit:
       - player
   moderator:
@@ -90,7 +105,7 @@ ranks:
       - helper
   resp_mod:
     id: resp_mod
-    rankToString: 'Resp. Modération'
+    rankToString: 'Resp. Moderation'
     rankColor: RED
     colorChat: WHITE
     perms:
