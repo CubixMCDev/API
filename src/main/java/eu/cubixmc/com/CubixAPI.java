@@ -109,6 +109,7 @@ public class CubixAPI extends JavaPlugin implements Listener {
 			if (getConfig().isSet("ranks." + s + ".inherit")) {
 				rank.setInherits(getConfig().getStringList("ranks." + s + ".inherit"));
 			}
+			
 			idToRank.put(getConfig().getString("ranks." + s + ".id").toLowerCase(), rank);
 		}
 		if (defaultRank == null) {
