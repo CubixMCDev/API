@@ -76,7 +76,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: 'ziggurat-1.0-SNAPSHOT.jar')
     compileOnly group: 'org.apache.commons', name: 'commons-text', version: '1.8'
     compileOnly group: 'org.projectlombok', name: 'lombok', version:'1.18.10'
-    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
     compile (name: 'spigot-1.8.8', ext:'jar')
 }
 

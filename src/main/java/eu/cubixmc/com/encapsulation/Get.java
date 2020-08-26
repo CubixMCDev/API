@@ -66,6 +66,25 @@ public class Get {
         return "player";
     }
 
+    public String getRankIDFromDataBase(UUID playerUUID) {
+        String s = "NONE";
+        try {
+            CachedRowSet set = plugin.getDatabaseManager().performQuery("SELECT secondary_rank FROM players WHERE uuid = ?", playerUUID.toString());
+            if(set.next()) {
+                s = set.getString("secondary_rank");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error performing SQL query: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
+            e.printStackTrace();
+        }
+
+        if(s.equalsIgnoreCase("NONE")) {
+            return "Player";
+        } else {
+            return s;
+        }
+    }
+
     public String getRankWithColors(UUID playerUUID) {
         if(Bukkit.getPlayer(playerUUID).isOnline()) {
             User user = plugin.getUserManager().getUser(playerUUID);

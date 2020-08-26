@@ -53,7 +53,7 @@ public class UserManager {
                 createNewUtilsAccount(playerUUID);
             }
             if(!hasCosmeticsAccount(playerUUID)) {
-                createNewUtilsAccount(playerUUID);
+                createNewCosmeticsAccount(playerUUID);
             }
             return;
         }
@@ -63,7 +63,7 @@ public class UserManager {
         }
 
         if(!hasCosmeticsAccount(playerUUID)) {
-            createNewUtilsAccount(playerUUID);
+            createNewCosmeticsAccount(playerUUID);
         }
 
         try {
@@ -165,4 +165,5 @@ public class UserManager {
         }
         return false;
     }
+
 }

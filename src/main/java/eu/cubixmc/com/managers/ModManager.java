@@ -1,6 +1,7 @@
 package eu.cubixmc.com.managers;
 
 import eu.cubixmc.com.CubixAPI;
+import org.bukkit.Bukkit;
 
 import javax.sql.rowset.CachedRowSet;
 import java.sql.PreparedStatement;
@@ -17,11 +18,11 @@ public class ModManager {
 	}
 	
 	public void setInMod(UUID playerUUID) {
-		plugin.getDatabaseManager().performAsyncUpdate("UPDATE utils SET modmode = 1 WHERE uuid = ?", playerUUID);
+		plugin.getDatabaseManager().performUpdate("UPDATE utils SET modmode = 1 WHERE uuid = ?", playerUUID.toString());
 	}
 	
 	public void removeFromMod(UUID playerUUID) {
-		plugin.getDatabaseManager().performAsyncUpdate("UPDATE utils SET modmode = 0 WHERE uuid = ?", playerUUID);
+		plugin.getDatabaseManager().performUpdate("UPDATE utils SET modmode = 0 WHERE uuid = ?", playerUUID.toString());
 	}
 	
 	public boolean isInMod(UUID playerUUID) {

@@ -1,7 +1,7 @@
 main: eu.cubixmc.com.CubixAPI
 name: CubixAPI
 version: 1.0
-author: Eliviel
+author: [Eliviel, ZelphixSama]
 commands:
   coins:
     description: Gestion de coins.

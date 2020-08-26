@@ -77,6 +77,7 @@ ranks:
     perms:
       - 'mute.use'
       - 'kick.use'
+      - 'tp.use'
     inherit:
       - player
   moderator:
@@ -86,6 +87,7 @@ ranks:
     colorChat: WHITE
     perms:
       - 'ban.use'
+      - 'tp.use'
     inherit:
       - helper
   resp_mod:
