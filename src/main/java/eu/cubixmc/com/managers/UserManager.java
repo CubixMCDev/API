@@ -41,6 +41,12 @@ public class UserManager {
         plugin.getDatabaseManager().performAsyncUpdate("INSERT INTO `utils`(`uuid`) VALUES(?);", uuid.toString());
     }
 
+    private void createNewPTBAccount(UUID uuid) {
+        plugin.getDatabaseManager().performAsyncUpdate("INSERT INTO `ptb`(`uuid`) VALUES(?);", uuid.toString());
+    }
+
+
+
     private void createNewCosmeticsAccount(UUID uuid) {
         plugin.getDatabaseManager().performAsyncUpdate("INSERT INTO `cosmetics`(`uuid`) VALUES(?);", uuid.toString());
     }
@@ -55,11 +61,18 @@ public class UserManager {
             if(!hasCosmeticsAccount(playerUUID)) {
                 createNewCosmeticsAccount(playerUUID);
             }
+            if(!hasPTBAccount(playerUUID)) {
+                createNewPTBAccount(playerUUID);
+            }
             return;
         }
 
         if(!hasUtilsAccount(playerUUID)) {
             createNewUtilsAccount(playerUUID);
+        }
+
+        if(!hasPTBAccount(playerUUID)) {
+            createNewPTBAccount(playerUUID);
         }
 
         if(!hasCosmeticsAccount(playerUUID)) {
@@ -156,6 +169,19 @@ public class UserManager {
     public boolean hasCosmeticsAccount(UUID playerUUID) {
         try {
             CachedRowSet set = plugin.getDatabaseManager().performQuery("SELECT uuid FROM cosmetics WHERE uuid = ?", playerUUID.toString());
+            if (set.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error performing SQL query: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean hasPTBAccount(UUID playerUUID) {
+        try {
+            CachedRowSet set = plugin.getDatabaseManager().performQuery("SELECT uuid FROM ptb WHERE uuid = ?", playerUUID.toString());
             if (set.next()) {
                 return true;
             }

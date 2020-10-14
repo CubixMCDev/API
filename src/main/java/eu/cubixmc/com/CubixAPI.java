@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import eu.cubixmc.com.commands.CommandCoins;
 import eu.cubixmc.com.commands.CommandCredits;
+import eu.cubixmc.com.commands.CommandRank;
 import eu.cubixmc.com.managers.*;
 import eu.cubixmc.com.encapsulation.Get;
 import eu.cubixmc.com.encapsulation.Set;
@@ -96,6 +97,7 @@ public class CubixAPI extends JavaPlugin implements Listener {
 		getCommand("mute").setExecutor(muteManager);
 		getCommand("tempmute").setExecutor(muteManager);
 		getCommand("unmute").setExecutor(muteManager);
+		getCommand("rank").setExecutor(new CommandRank(this));
 	}
 
 	private void loadRanks() {

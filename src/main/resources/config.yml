@@ -1,8 +1,8 @@
 host: 'localhost'
 port: 3306
-username: 'Cubix'
-password: 'CubixTMPlanet2019'
-database: 'cubixbase'
+username: ''
+password: ''
+database: ''
 
 ranks:
   player:
