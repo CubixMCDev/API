@@ -1,122 +1,124 @@
-host: 'localhost'
+host: localhost
 port: 3306
 username: ''
 password: ''
 database: ''
-
 ranks:
-  none:
-    id: none
-    rankToString: 'None'
-    rankColor: GRAY
-    colorChat: GRAY
-    perms:
-      - ''
   player:
     id: player
-    rankToString: 'Player'
+    rankToString: Player
     rankColor: GRAY
     colorChat: GRAY
     perms:
-      - 'coins.fetch'
-      - 'credits.fetch'
-      - 'servers.switch'
+    - coins.fetch
+    - credits.fetch
+    - servers.switch
     default: true
   vip:
     id: vip
-    rankToString: 'VIP'
+    rankToString: VIP
     rankColor: YELLOW
     colorChat: WHITE
     perms:
-      - 'cow.disguise'
+    - cow.disguise
+    - rank.messagesyntax
+    - joinquit.message
     inherit:
-      - player
+    - player
   vip+:
     id: vip+
-    rankToString: 'VIP+'
+    rankToString: VIP+
     rankColor: GOLD
     colorChat: WHITE
     perms:
-      - 'enderman.disguise'
+    - enderman.disguise
     inherit:
-      - vip
+    - vip
   youtuber:
     id: youtuber
-    rankToString: 'Youtuber'
+    rankToString: Youtuber
     rankColor: GOLD
     colorChat: WHITE
     perms:
-      - 'nick.use'
+    - nick.use
     inherit:
-      - vip+
+    - vip+
   friend:
     id: friend
-    rankToString: 'Friend'
+    rankToString: Friend
     rankColor: WHITE
     colorChat: WHITE
     perms:
-      - 'staff.chat'
+    - staff.chat
+    - rank.messagesyntax
+    - joinquit.message
     inherit:
-      - vip+
+    - player
   partner:
     id: partner
-    rankToString: 'Partner'
+    rankToString: Partner
     rankColor: GOLD
     colorChat: WHITE
     perms:
-      - 'partner.use'
+    - partner.use
+    - rank.messagesyntax
+    - joinquit.message
     inherit:
-      - player
+    - player
   builder:
     id: builder
-    rankToString: 'Builder'
+    rankToString: Builder
     rankColor: DARK_GREEN
     colorChat: WHITE
     perms:
-      - 'build.use'
+    - build.use
+    - rank.messagesyntax
+    - joinquit.message
     inherit:
-      - vip+
+    - player
   helper:
     id: helper
-    rankToString: 'Helper'
+    rankToString: Helper
     rankColor: AQUA
     colorChat: WHITE
     perms:
-      - 'mute.use'
-      - 'kick.use'
-      - 'tp.use'
+    - mute.use
+    - kick.use
+    - rank.messagesyntax
+    - joinquit.message
     inherit:
-      - player
+    - player
   moderator:
     id: moderator
-    rankToString: 'Moderator'
+    rankToString: Moderator
     rankColor: DARK_AQUA
     colorChat: WHITE
     perms:
-      - 'ban.use'
-      - 'tp.use'
+    - ban.use
+    - rank.messagesyntax
+    - joinquit.message
     inherit:
-      - helper
+    - helper
   resp_mod:
     id: resp_mod
-    rankToString: 'Resp. Modération'
+    rankToString: Resp. Modération
     rankColor: RED
     colorChat: WHITE
     perms:
-      - 'block.staff.use'
+    - block.staff.use
     inherit:
-      - moderator
+    - moderator
   developer:
     id: developer
-    rankToString: 'Developer'
+    rankToString: Developer
     rankColor: BLUE
     colorChat: WHITE
     perms:
-      - '*'
+    - '*'
   admin:
     id: admin
-    rankToString: 'Admin'
+    rankToString: Admin
     rankColor: RED
     colorChat: RED
     perms:
-      - '*'
+    - '*'
