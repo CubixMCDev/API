@@ -5,6 +5,13 @@ password: ''
 database: ''
 
 ranks:
+  none:
+    id: none
+    rankToString: 'None'
+    rankColor: GRAY
+    colorChat: GRAY
+    perms:
+      - ''
   player:
     id: player
     rankToString: 'Player'

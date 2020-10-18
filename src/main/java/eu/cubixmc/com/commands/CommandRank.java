@@ -2,6 +2,7 @@ package eu.cubixmc.com.commands;
 
 import eu.cubixmc.com.CubixAPI;
 import eu.cubixmc.com.data.User;
+import eu.cubixmc.com.ranks.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,20 +15,9 @@ public class CommandRank implements CommandExecutor {
 
     private CubixAPI plugin;
     private String prefix = "§eCubixMC §f»";
-    private ArrayList<String> secondaryranks = new ArrayList<>();
 
     public CommandRank(CubixAPI plugin) {
         this.plugin = plugin;
-        secondaryranks.add("admin");
-        secondaryranks.add("developer");
-        secondaryranks.add("respmod");
-        secondaryranks.add("mod");
-        secondaryranks.add("helper");
-        secondaryranks.add("builder");
-        secondaryranks.add("friend");
-        secondaryranks.add("youtube");
-        secondaryranks.add("partner");
-        secondaryranks.add("player");
     }
 
     @Override
@@ -54,10 +44,12 @@ public class CommandRank implements CommandExecutor {
                                 p.sendMessage(prefix + "§cCe joueur n'est actuellement pas connecté.");
                                 return true;
                             } else {
+                                User user = plugin.getUserManager().getUser(target.getUniqueId());
                                 String rank = args[2];
-                                if(rank.equalsIgnoreCase("vip") || rank.equalsIgnoreCase("vipplus")) {
-                                    plugin.getDatabaseManager().performAsyncUpdate("UPDATE players SET primary_rank = ? WHERE uuid = ?", rank.toLowerCase(), p.getUniqueId().toString());
-                                    p.sendMessage(prefix + "§eVous venez d'assigner §6" + target.getName() + " §eau rang de §6" + rank);
+                                if(plugin.getIdToRank().containsKey(rank)) {
+                                    user.setPrimaryRank(plugin.getIdToRank().get(rank));
+                                    // plugin.getDatabaseManager().performAsyncUpdate("UPDATE players SET primary_rank = ? WHERE uuid = ?", rank.toLowerCase(), p.getUniqueId().toString());
+                                    p.sendMessage(prefix + "§eVous venez d'assigner §6" + target.getName() + " §eau rang de " + plugin.getIdToRank().get(rank).getRankToStringWithColor());
                                 } else {
                                     p.sendMessage(prefix + "§cCe rang n'existe pas !");
                                 }
@@ -69,9 +61,11 @@ public class CommandRank implements CommandExecutor {
                                 return true;
                             } else {
                                 String rank = args[2];
-                                if(secondaryranks.contains(rank.toLowerCase())) {
-                                    plugin.getDatabaseManager().performAsyncUpdate("UPDATE players SET secondary_rank = ? WHERE uuid = ?", rank.toLowerCase(), p.getUniqueId().toString());
-                                    p.sendMessage(prefix + "§eVous venez d'assigner §6" + target.getName() + " §eau rang de §6" + rank);
+                                User user = plugin.getUserManager().getUser(target.getUniqueId());
+                                if(plugin.getIdToRank().containsKey(rank)) {
+                                    user.setSecondaryRank(plugin.getIdToRank().get(rank));
+                                    // plugin.getDatabaseManager().performAsyncUpdate("UPDATE players SET secondary_rank = ? WHERE uuid = ?", rank.toLowerCase(), p.getUniqueId().toString());
+                                    p.sendMessage(prefix + "§eVous venez d'assigner §6" + target.getName() + " §eau rang de §6" + plugin.getIdToRank().get(rank).getRankToStringWithColor());
                                 } else {
                                     p.sendMessage(prefix + "§cCe rang n'existe pas !");
                                 }
@@ -85,7 +79,10 @@ public class CommandRank implements CommandExecutor {
                             p.sendMessage(prefix + "§cCe joueur n'est actuellement pas connecté.");
                             return true;
                         } else {
-                            plugin.getDatabaseManager().performAsyncUpdate("UPDATE players SET secondary_rank = ?, primary_rank = ? WHERE uuid = ?", "player", "NONE", p.getUniqueId().toString());
+                            User user = plugin.getUserManager().getUser(target.getUniqueId());
+                            user.setPrimaryRank(plugin.getDefaultRank());
+                            user.setSecondaryRank(plugin.getIdToRank().get("none"));
+                            // performAsyncUpdate("UPDATE players SET secondary_rank = ?, primary_rank = ? WHERE uuid = ?", "player", "NONE", p.getUniqueId().toString());
                             p.sendMessage(prefix + "§eVous venez de supprmier le rang de  §6" + target.getName());
                         }
                     }
