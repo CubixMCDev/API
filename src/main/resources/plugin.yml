@@ -1,19 +1,19 @@
 main: eu.cubixmc.com.CubixAPI
 name: CubixAPI
 version: 1.0
-author: [Eliviel, ZelphixSama]
+author: [Eliviel, ZelphixSama, Pipo]
 commands:
   coins:
     description: Gestion de coins.
   credits:
   ban:
-    description: Bannir definitivement.
+    description: Ban permanently.
   unban:
     description: Unban un joueur.
   rank:
-    description: Gestion des ranks.
+    description: Rank management.
   tempban:
-    description: Bannir temporairement.
+    description: Temporarily ban.
   mute:
     description: Mute a player.
   unmute:

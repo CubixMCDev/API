@@ -1,8 +1,10 @@
-host: localhost
-port: 3306
-username: ''
-password: ''
-database: ''
+data:
+  host: localhost
+  port: 3306
+  username: ''
+  password: ''
+  database: ''
+
 ranks:
   player:
     id: player

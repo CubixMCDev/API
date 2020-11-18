@@ -22,11 +22,11 @@ public class MysqlManager {
     public MysqlManager(CubixAPI plugin) {
         this.plugin = plugin;
         try {
-            String host = plugin.getConfig().getString("host");
-            String user = plugin.getConfig().getString("username");
-            String pass = plugin.getConfig().getString("password");
-            String database = plugin.getConfig().getString("database");
-            int port = plugin.getConfig().getInt("port");
+            String host = plugin.getConfig().getString("data.host");
+            String user = plugin.getConfig().getString("data.username");
+            String pass = plugin.getConfig().getString("data.password");
+            String database = plugin.getConfig().getString("data.database");
+            int port = plugin.getConfig().getInt("data.port");
             HikariConfig config = new HikariConfig();
             config.setJdbcUrl("jdbc:mysql://" + host + ":" + port + "/" + database + "?autoReconnect=true&allowMultiQueries=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false");
             config.setDriverClassName("com.mysql.jdbc.Driver");

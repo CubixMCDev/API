@@ -15,7 +15,6 @@ import eu.cubixmc.com.ranks.Rank;
 import eu.cubixmc.com.data.sanctions.BanPlayerData;
 import eu.cubixmc.com.data.sanctions.MutePlayerData;
 import eu.cubixmc.com.data.User;
-import eu.cubixmc.com.ranks.ScoarboardTeam;
 import eu.cubixmc.com.sql.MysqlManager;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,6 +34,9 @@ public class CubixAPI extends JavaPlugin implements Listener {
 		return instance;
 	}
 
+	public String prefix = ChatColor.YELLOW+"CubixMC "+ChatColor.GOLD+"» ";
+	public String prefixError = ChatColor.RED+"CubixMC "+ChatColor.DARK_RED+"» ";
+
 	private Map<Player, User> dataPlayers = new HashMap<>();
 	private Map<UUID, BanPlayerData> banned = new HashMap<>();
 	private Map<UUID, MutePlayerData> muted = new HashMap<>();
@@ -51,8 +53,7 @@ public class CubixAPI extends JavaPlugin implements Listener {
 	private FriendsManager friendsManager;
 	private PartyManager partyManager;
 	private MysqlManager databaseManager;
-	
-	private ScoarboardTeam scTeam;
+
 	private boolean teamTagOn = true;
 	
 	private Scoreboard s;
@@ -62,15 +63,11 @@ public class CubixAPI extends JavaPlugin implements Listener {
 		instance = this;
 		get = new Get(this);
 		set = new Set(this);
-		/* ENABLE WHEN RELEASING ON ALL SERVERS AT THE SAME TIME
-		File configFile = new File(this.getDataFolder(), "config.yml");
-		if(configFile.exists()) configFile.delete();
-		 */
+
 		loadConfig();
 		s = Bukkit.getScoreboardManager().getMainScoreboard();
 		databaseManager = new MysqlManager(this);
 		userManager = new UserManager(this);
-		scTeam = new ScoarboardTeam(this);
 		banManager = new BanManager(this);
 		muteManager = new MuteManager(this);
 		modManager = new ModManager(this);
@@ -84,8 +81,6 @@ public class CubixAPI extends JavaPlugin implements Listener {
 
 		banManager.loadBannedPlayers();
 		muteManager.loadMutedPlayers();
-
-		scTeam.registerTeamTag(true);
 	}
 
 	private void registerCommands() {
