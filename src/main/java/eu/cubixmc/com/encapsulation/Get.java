@@ -17,12 +17,10 @@ public class Get {
 
     public Get(CubixAPI plugin) { this.plugin = plugin; }
 
-    //database
     public MysqlManager getDataBase() {
         return plugin.getDatabaseManager();
     }
 
-    //mod
     public boolean isInMod(UUID playerUUID) {
         try {
             CachedRowSet set = plugin.getDatabaseManager().performQuery("SELECT modmode FROM utils WHERE uuid = ?", playerUUID.toString());
@@ -40,7 +38,6 @@ public class Get {
         return false;
     }
 
-    // economie
     public int getCoins(UUID playerUUID) {
         if(Bukkit.getPlayer(playerUUID).isOnline()) {
             User user = plugin.getUserManager().getUser(playerUUID);
@@ -57,7 +54,6 @@ public class Get {
         return 0;
     }
 
-    // rank
     public String getRankID(UUID playerUUID) {
         if(Bukkit.getPlayer(playerUUID).isOnline()) {
             User user = plugin.getUserManager().getUser(playerUUID);
@@ -157,12 +153,10 @@ public class Get {
         return solutions.get(0);
     }
 
-    //ban
     public boolean isBanned(UUID playerUUID) {
         return plugin.getBanManager().isBanned(playerUUID);
     }
 
-    //mute
     public boolean isMuted(UUID playerUUID) {
         return plugin.getMuteManager().isMuted(playerUUID);
     }

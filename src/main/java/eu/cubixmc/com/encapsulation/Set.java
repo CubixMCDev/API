@@ -13,7 +13,6 @@ public class Set {
 
     public Set(CubixAPI plugin) { this.plugin = plugin; }
 
-    //economie
     public void addCoins(UUID playerUUID, int amount) {
         if(Bukkit.getPlayer(playerUUID).isOnline()) {
             User user = plugin.getUserManager().getUser(playerUUID);
@@ -42,7 +41,6 @@ public class Set {
         }
     }
 
-    //rank
     public void setRank(UUID playerUUID, String rank, boolean isPrimary) {
         if(Bukkit.getPlayer(playerUUID).isOnline()) {
             if( plugin.getIdToRank().get(rank) != null) {
@@ -56,7 +54,6 @@ public class Set {
         }
     }
 
-    // exp
     public void setExp(UUID playerUUID, int amount) {
         if(Bukkit.getPlayer(playerUUID).isOnline()) {
             User user = plugin.getUserManager().getUser(playerUUID);

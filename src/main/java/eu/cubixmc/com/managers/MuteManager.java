@@ -9,6 +9,7 @@ import eu.cubixmc.com.CubixAPI;
 import eu.cubixmc.com.data.sanctions.BanPlayerData;
 import eu.cubixmc.com.data.sanctions.MutePlayerData;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -34,13 +35,13 @@ public class MuteManager implements CommandExecutor {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
 				if(!player.hasPermission("mute.custom")) {
-					player.sendMessage("§cCubixMC §4» §cErreur: commande inconnue.");
+					player.sendMessage(plugin.prefixError+ ChatColor.RED+"Erreur: commande inconnue.");
 					return true;
 				}
 			}
 			
             if(args.length == 0){
-                sender.sendMessage("§6[§eCubixMC§6]§e Commande correcte: /tempmute <player> <days> <hours> <minutes> <reason>");
+				sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: commande correct: "+ChatColor.DARK_RED+"/tempmute <joueur> <jours> <heures> <minutes> <raison>"+ChatColor.RED+".");
                 return true;
             }
             
@@ -53,13 +54,12 @@ public class MuteManager implements CommandExecutor {
                 if(target.hasPlayedBefore()) {
                 	targetUUID = target.getUniqueId();
                 } else {
-                	sender.sendMessage("§cErreur: Joueur n'a jamais joué sur le serveur !");
+					sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: le joueur"+ChatColor.DARK_RED+target.getName()+ChatColor.RED+" n'est pas en ligne !");
                 	return true;
                 }
                 
                 StringBuilder raison = new StringBuilder("");
-           
-               
+
                 if(args[1] != null && args[2] != null && args.length >= 3){
                    
                 	int days = (int) Integer.valueOf(args[1]);
@@ -72,7 +72,7 @@ public class MuteManager implements CommandExecutor {
                         }
                     }
 
-                    sender.sendMessage("§c§lDuration:§r§c " + days + " days, " + hours + " hours and " + minutes + " minutes.");
+                    sender.sendMessage(plugin.prefix+ChatColor.YELLOW+"Durée: "+ChatColor.GOLD+days+" jours, "+hours+" heures et "+minutes+" minutes"+ChatColor.YELLOW+".");
                    
                     mutePlayer(sender, targetUUID, target.getName(), raison.toString(), false, days, hours, minutes);
                 }
@@ -87,13 +87,13 @@ public class MuteManager implements CommandExecutor {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
 				if(!player.hasPermission("mute.custom")) {
-					player.sendMessage("§cCubixMC §4» §cErreur: commande inconnue.");
+					player.sendMessage(plugin.prefixError+ ChatColor.RED+"Erreur: commande inconnue.");
 					return true;
 				}
 			}
         	
             if(args.length == 0){
-                sender.sendMessage("§cCommande correcte: /mute <player> <raison>");
+				sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: commande correct: "+ChatColor.DARK_RED+"/mute <joueur> <raison>"+ChatColor.RED+".");
             }
            
             if(args.length >= 1){
@@ -105,7 +105,7 @@ public class MuteManager implements CommandExecutor {
                 if(target.hasPlayedBefore()) {
                 	targetUUID = target.getUniqueId();
                 } else {
-                	sender.sendMessage("§cErreur: Joueur n'a jamais joué sur le serveur !");
+					sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: le joueur"+ChatColor.DARK_RED+target.getName()+ChatColor.RED+" n'est pas en ligne !");
                 	return true;
                 }
                 
@@ -133,14 +133,14 @@ public class MuteManager implements CommandExecutor {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
 				if(!player.hasPermission("unmute.use")) {
-					player.sendMessage("§cCubixMC §4» §cErreur: commande inconnue.");
+					player.sendMessage(plugin.prefixError+ ChatColor.RED+"Erreur: commande inconnue.");
 					return true;
 				}
 			}
         	
             //unmute
             if(args.length == 0){
-                sender.sendMessage("§c§lCommande correcte: /unmute <player>");
+				sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: commande correct: "+ChatColor.DARK_RED+"/unmute <joueur>"+ChatColor.RED+".");
             }
            
             if(args.length == 1){
@@ -152,7 +152,7 @@ public class MuteManager implements CommandExecutor {
                 if(target.hasPlayedBefore()) {
                 	targetUUID = target.getUniqueId();
                 } else {
-                	sender.sendMessage("§cErreur: Joueur n'a jamais joué sur le serveur !");
+					sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: le joueur"+ChatColor.DARK_RED+target.getName()+ChatColor.RED+" n'est pas en ligne !");
                 	return true;
                 }
                 
@@ -195,15 +195,15 @@ public class MuteManager implements CommandExecutor {
             return;
         }
         sender.sendMessage("§cVous avez mute le joueur §f" + nameCible + "§c pour: §f" + raison.toString());
-        sender.sendMessage("§c§lDuration:§r§c " + timeAsDays + " days, "+ timeAsHours + " hours and " + timeAsMinutes + " minutes.");
+		sender.sendMessage(plugin.prefix+ChatColor.YELLOW+"Durée: "+ChatColor.GOLD+timeAsDays+" jours, "+timeAsHours+" heures et "+timeAsMinutes+" minutes"+ChatColor.YELLOW+".");
 
         Player target = Bukkit.getPlayer(targetUUID);
         if(target.isOnline()) {
         	if(isDefinitif) {
-        		target.sendMessage("§c§lYou have been permanently muted for: §r§c" + raison.toString());
+        		target.sendMessage(plugin.prefix+ChatColor.YELLOW+"Vous avez été mute de façon permanente pour: "+ChatColor.GOLD+raison.toString());
 			} else {
-				target.sendMessage("§c§lYou have been muted for: §r§c" + raison.toString());
-				target.sendMessage("§c§lDuration:§r§c " + timeAsDays + " days, " + timeAsHours + " hours and " + timeAsMinutes + " minutes.");
+				target.sendMessage(plugin.prefix+ChatColor.YELLOW+"Vous avez été mute pour: "+ChatColor.GOLD+ raison.toString());
+				sender.sendMessage(plugin.prefix+ChatColor.YELLOW+"Durée: "+ChatColor.GOLD+timeAsDays+" jours, "+timeAsHours+" heures et "+timeAsMinutes+" minutes"+ChatColor.YELLOW+".");
 			}
 		}
 
@@ -220,7 +220,7 @@ public class MuteManager implements CommandExecutor {
 
 		   plugin.getDatabaseManager().performAsyncUpdate("UPDATE muted SET expiredate = DATE_ADD(NOW(), INTERVAL " + timeOverall +"), chat = " + nb1 +
 				   " WHERE uuid = ?", targetUUID.toString());
-		   Bukkit.broadcastMessage("§c§lUn joueur vient de se faire mute de votre serveur par un Moderateur!");
+		   Bukkit.broadcastMessage(plugin.prefix+ChatColor.YELLOW+"Un joueur vient de se faire mute de votre serveur par un Moderateur !");
     	   
        } else {
 
@@ -239,16 +239,14 @@ public class MuteManager implements CommandExecutor {
 	public void unmutePlayer(CommandSender sender, UUID targetUUID, String name){
 	       
         if(!plugin.getMuted().containsKey(targetUUID)){
-            sender.sendMessage("§6Le joueur n'est pas présent dans le répertoire des joueurs muted !" );
+			sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: le joueur n'est pas présent dans le répertoire des joueurs mute !" );
             return;
         }
        
         plugin.getMuted().remove(targetUUID);
-        sender.sendMessage("§c"+ name +"§6 § été unmute !");
+		sender.sendMessage(plugin.prefix+ChatColor.YELLOW+"Le joueur "+ChatColor.GOLD+name+ChatColor.YELLOW+" à été démute !");
 
         int previousMutes = getNumberOfPreviousMutes(targetUUID);
-        
-        //modifier la bdd a la date current et enlever 1 au chat (sql)
 
 		if(previousMutes == 1) {
 			plugin.getDatabaseManager().performAsyncUpdate("DELETE FROM muted WHERE uuid = ?"

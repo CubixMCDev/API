@@ -2,6 +2,7 @@ package eu.cubixmc.com.events;
 
 import eu.cubixmc.com.CubixAPI;
 import eu.cubixmc.com.data.User;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -38,14 +39,12 @@ public class EventsListener implements Listener {
 		
 		if(plugin.getMuted().containsKey(player.getUniqueId())) {
 			if(plugin.getMuteManager().isMuted(player.getUniqueId())) {
-				player.sendMessage("§cVous êtes mute !");
+				player.sendMessage(plugin.prefixError+ChatColor.RED+"Vous êtes mute !");
 				e.setCancelled(true);
 				return;
 			} else {
 				plugin.getMuted().remove(player.getUniqueId());
 			}
 		}
-
 	}
-	
 }

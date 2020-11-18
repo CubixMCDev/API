@@ -3,6 +3,7 @@ package eu.cubixmc.com.managers;
 import eu.cubixmc.com.CubixAPI;
 import eu.cubixmc.com.data.sanctions.BanPlayerData;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,21 +24,17 @@ public class BanManager implements CommandExecutor {
  
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        // TODO Auto-generated method stub
-       
-    	
         if(command.getName().endsWith("tempban")){
-
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
 				if(!player.hasPermission("ban.custom")) {
-					player.sendMessage("§cCubixMC §4» §cErreur: commande inconnue.");
+					player.sendMessage(plugin.prefixError+ ChatColor.RED+"Erreur: commande inconnue.");
 					return true;
 				}
 			}
         	
             if(args.length == 0){
-            	sender.sendMessage("§c[CubixMC] commande correct: /tempban <joueur> <days> <hours> <minutes> <categorie 1/2/3> <reason>");
+            	sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: commande correct: "+ChatColor.DARK_RED+"/tempban <joueur> <jours> <heures> <minutes> <categorie 1(cheat)/2(gameplay)/3(chat)> <raison>"+ChatColor.RED+".");
             	return true;
             }
            
@@ -50,7 +47,7 @@ public class BanManager implements CommandExecutor {
                 if(target.hasPlayedBefore()) {
                 	targetUUID = target.getUniqueId();
                 } else {
-                	sender.sendMessage("§cErreur: Joueur n'a jamais joué sur le serveur !");
+					sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: le joueur"+ChatColor.DARK_RED+target.getName()+ChatColor.RED+" n'est pas en ligne !");
                 	return true;
                 }
                 
@@ -82,13 +79,13 @@ public class BanManager implements CommandExecutor {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
 				if(!player.hasPermission("ban.custom")) {
-					player.sendMessage("§cCubixMC §4» §cErreur: commande inconnue.");
+					player.sendMessage(plugin.prefixError+ ChatColor.RED+"Erreur: commande inconnue.");
 					return true;
 				}
 			}
         	
             if(args.length == 0){
-                sender.sendMessage("§4[CubixMC] §cErreur: commande correct: §4/ban <joueur> <raison>");
+				sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: commande correct: "+ChatColor.DARK_RED+"/ban <joueur> <raison>"+ChatColor.RED+".");
             }
            
             if(args.length >= 1){
@@ -100,7 +97,7 @@ public class BanManager implements CommandExecutor {
                 if(target.hasPlayedBefore()) {
                 	targetUUID = target.getUniqueId();
                 } else {
-                	sender.sendMessage("§cErreur: Joueur n'a jamais joué sur le serveur !");
+					sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: le joueur"+ChatColor.DARK_RED+target.getName()+ChatColor.RED+" n'est pas en ligne !");
                 	return true;
                 }
                 
@@ -128,14 +125,14 @@ public class BanManager implements CommandExecutor {
 			if(sender instanceof Player) {
 				Player player = (Player) sender;
 				if(!player.hasPermission("unban.use")) {
-					player.sendMessage("§cCubixMC §4» §cErreur: commande inconnue.");
+					player.sendMessage(plugin.prefixError+ ChatColor.RED+"Erreur: commande inconnue.");
 					return true;
 				}
 			}
         	
             //unban
             if(args.length == 0){
-                sender.sendMessage("§4[CubixMC] §cErreur: commande correct: §4/unban <joueur>");
+				sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: commande correct: "+ChatColor.DARK_RED+"/unban <joueur>"+ChatColor.RED+".");
             }
            
             if(args.length == 1){
@@ -147,7 +144,7 @@ public class BanManager implements CommandExecutor {
                 if(target.hasPlayedBefore()) {
                 	targetUUID = target.getUniqueId();
                 } else {
-                	sender.sendMessage("§cErreur: Joueur n'a jamais joué sur le serveur !");
+					sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: le joueur"+ChatColor.DARK_RED+target.getName()+ChatColor.RED+" n'est pas en ligne !");
                 	return true;
                 }
                 
@@ -179,18 +176,18 @@ public class BanManager implements CommandExecutor {
 			}
 		});
 		
-		System.out.println(plugin.getBanned().size() + " joueurs ont été ban sur le serveur.");
+		System.out.println(plugin.getBanned().size() + " joueurs ont été banni sur le serveur.");
 		
 	}
 
 	public void banPlayer(CommandSender sender, UUID targetUUID, String targetName, String raison, boolean isDefinitif, int timeAsDays, int timeAsHours, int timeAsMinutes, int categorie){
 		
 		if(isBanned(targetUUID)){
-            sender.sendMessage("§cJoueur déjà ban.");
+            sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: le joueur a déjà été banni.");
             return;
         }
        
-        sender.sendMessage("§cVous avez ban le joueur §f" + targetName + "§c pour: §f" + raison);
+        sender.sendMessage(plugin.prefix+ChatColor.YELLOW+"Vous avez banni le joueur "+ChatColor.GOLD+targetName+ChatColor.YELLOW+" pour: '"+ChatColor.GOLD+ raison+ChatColor.YELLOW+"'.");
        
         /*
         String timeH = "17 YEAR";
@@ -213,14 +210,14 @@ public class BanManager implements CommandExecutor {
 				   + timeOverall +"), last = " + categorie + " WHERE uuid = ?", targetUUID.toString());
 
 		   setCategoryValue(targetUUID, categorie, getNumberOfPreviousBans(targetUUID, categorie) + 1);
-		   Bukkit.broadcastMessage("§c§lUn joueur vient de se faire ban de votre serveur par un Moderateur!");
+		   Bukkit.broadcastMessage(plugin.prefix+ChatColor.YELLOW+"Un joueur vient de se faire ban de votre serveur par un Moderateur !");
 
 		   Player p = Bukkit.getPlayer(targetUUID);
 		   if(Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(targetUUID))){
-			   p.kickPlayer("§eYou have been banned from Cubix§6MC§e Networks\n\n" + "§eReason:§a "+ raison.toString()  + "\n\n§c§lDuration:§r§c " + timeAsDays + " days, " + timeAsHours + " hours and " + timeAsMinutes + " minutes.");
+			   p.kickPlayer(ChatColor.YELLOW+"You have been banned from CubixMC Networks\n\n" + ChatColor.YELLOW+"Reason:§a "+ raison.toString()  + "\n\n§c§lDuration:§r§c " + timeAsDays + " days, " + timeAsHours + " hours and " + timeAsMinutes + " minutes.");
 		   } else {
 			   Player player = (Player) sender;
-			   player.performCommand("push " + player.getName() + " kick " + targetName + " §eYou have been banned " + "from Cubix§6MC§e Networks\n\n" + "§eReason:§a "+ raison.toString()  + "\n\n§c§lDuration:§r§c " + timeAsDays + " days, " + timeAsHours + " hours and " + timeAsMinutes + " minutes.");
+			   player.performCommand("push " + player.getName() + " kick " + targetName +ChatColor.YELLOW+" You have been banned from CubixMC Networks\n\n" +ChatColor.YELLOW+"Reason: "+ChatColor.GOLD+ raison.toString()  +ChatColor.YELLOW+"\n\nDuration: "+ChatColor.GOLD+ timeAsDays + " days, " + timeAsHours + " hours and " + timeAsMinutes + " minutes.");
 		   }
 
 	   } else {
@@ -229,10 +226,10 @@ public class BanManager implements CommandExecutor {
 
 		   Player p = Bukkit.getPlayer(targetUUID);
 		   if(Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(targetUUID))){
-			   p.kickPlayer("§eYou have been banned from Cubix§6MC§e Networks\n\n" + "§eReason:§a "+ raison.toString()  + "\n\n§c§lDuration:§r§c " + timeAsDays + " days, " + timeAsHours + " hours and " + timeAsMinutes + " minutes.");
+			   p.kickPlayer(ChatColor.YELLOW+"You have been banned from CubixMC Networks\n\n" + ChatColor.YELLOW+"Reason:§a "+ raison.toString()  + "\n\n§c§lDuration:§r§c " + timeAsDays + " days, " + timeAsHours + " hours and " + timeAsMinutes + " minutes.");
 		   } else {
 			   Player player = (Player) sender;
-			   player.performCommand("push " + player.getName() + " kick " + targetName + " §eYou have been banned from Cubix§6MC§e Networks\n\n" + "§eReason:§a "+ raison.toString()  + "\n\n§c§lDuration:§r§c " + timeAsDays + " days, " + timeAsHours + " hours and " + timeAsMinutes + " minutes.");
+			   player.performCommand("push " + player.getName() + " kick " + targetName +ChatColor.YELLOW+" You have been banned from CubixMC Networks\n\n" +ChatColor.YELLOW+"Reason: "+ChatColor.GOLD+ raison.toString()  +ChatColor.YELLOW+"\n\nDuration: "+ChatColor.GOLD+ timeAsDays + " days, " + timeAsHours + " hours and " + timeAsMinutes + " minutes.");
 
 		   }
 
@@ -248,12 +245,12 @@ public class BanManager implements CommandExecutor {
 	public void unbanPlayer(CommandSender sender, UUID targetUUID, String targetName){
 	       
         if(!plugin.getBanned().containsKey(targetUUID)){
-            sender.sendMessage("§6Le joueur n'est pas présent dans le répertoire des joueurs banned !" );
+            sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: le joueur n'est pas présent dans le répertoire des joueurs banni !" );
             return;
         }
 
 		plugin.getBanned().remove(targetUUID);
-        sender.sendMessage("§c"+ targetName +"§6 à été unban !");
+        sender.sendMessage(plugin.prefix+ChatColor.YELLOW+"Le joueur "+ChatColor.GOLD+targetName+ChatColor.YELLOW+" à été débanni !");
        
         int nb = getNumberOfPreviousBans(targetUUID, getLastBan(targetUUID)) - 1;
 

@@ -17,8 +17,6 @@ public class PartyManager {
 	public PartyManager(CubixAPI plugin) {
 		this.plugin = plugin;
 	}
-	
-	protected String table = "party";
 
 	public boolean isInParty(String player) {
 		List<String> leaders = getLeaders();
@@ -42,7 +40,7 @@ public class PartyManager {
 		List<String> members = null;
 		List<String> result = new ArrayList<String>();
 		try {
-			members = SQL_ReceiveL("SELECT members FROM " + table, "members");
+			members = SQL_ReceiveL("SELECT members FROM party ", "members");
 			for(String member : members) {
 				result.add(member.toString());
 			}
@@ -57,7 +55,7 @@ public class PartyManager {
 		List<String> leaders = null;
 		List<String> result = new ArrayList<String>();
 		try {
-			leaders = SQL_ReceiveL("SELECT leader_name FROM " + table, "leader_name");
+			leaders = SQL_ReceiveL("SELECT leader_name FROM party ", "leader_name");
 			for(String leader : leaders) {
 				result.add(leader.toString());
 			}
@@ -73,7 +71,7 @@ public class PartyManager {
 			List<String> members = null;
 			ArrayList<String> players = new ArrayList<String>();
 			try {
-				members = SQL_ReceiveL("SELECT members FROM " + table + " WHERE leader_name = '" + player + "'", "members");
+				members = SQL_ReceiveL("SELECT members FROM party WHERE leader_name = '" + player + "'", "members");
 				return members;
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
