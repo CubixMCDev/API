@@ -26,7 +26,7 @@ public class CommandCoins implements CommandExecutor {
 			
 			if(args.length == 0) {
 				int balance = user.getCoins();
-				p.sendMessage(plugin.prefix+ChatColor.YELLOW+"Vous possedez "+ChatColor.GOLD+balance+ChatColor.YELLOW+" coins.");
+				p.sendMessage(plugin.prefix+ChatColor.YELLOW+"Vous possedez "+ChatColor.GOLD+balance+" coins"+ChatColor.YELLOW+".");
 				return true;
 			}
 			
