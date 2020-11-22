@@ -43,6 +43,7 @@ ranks:
     colorChat: WHITE
     perms:
     - nick.use
+    - fly.hub
     inherit:
     - vip+
   friend:
@@ -54,6 +55,7 @@ ranks:
     - staff.chat
     - rank.messagesyntax
     - joinquit.message
+    - fly.hub
     inherit:
     - player
   partner:
@@ -65,6 +67,7 @@ ranks:
     - partner.use
     - rank.messagesyntax
     - joinquit.message
+    - fly.hub
     inherit:
     - player
   builder:
@@ -76,6 +79,7 @@ ranks:
     - build.use
     - rank.messagesyntax
     - joinquit.message
+    - fly.hub
     inherit:
     - player
   helper:
@@ -88,6 +92,7 @@ ranks:
     - kick.use
     - rank.messagesyntax
     - joinquit.message
+    - fly.hub
     inherit:
     - player
   moderator:

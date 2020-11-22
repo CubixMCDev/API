@@ -25,8 +25,8 @@ public class CommandCredits implements CommandExecutor {
 			User user = plugin.getUserManager().getUser(p);
 
 			if(args.length == 0) {
-				int balance = user.getCoins();
-				p.sendMessage(plugin.prefix+ChatColor.YELLOW+"Vous possedez "+ChatColor.GOLD+balance+" credits."+ChatColor.YELLOW+".");
+				int balance = user.getCredits();
+				p.sendMessage(plugin.prefix+ChatColor.YELLOW+"Vous possedez "+ChatColor.GOLD+balance+" credits"+ChatColor.YELLOW+".");
 				return true;
 			}
 			if(!p.hasPermission("credits.edit")) {

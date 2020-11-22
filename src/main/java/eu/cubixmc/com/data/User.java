@@ -90,30 +90,31 @@ public class User {
 						attachment.setPermission(str, true);
 					}
 				}
-				//
-				if (plugin.getIdToRank().containsKey(getPrimaryRank().getId().toLowerCase())) {
-					for (String perm : plugin.getIdToRank().get(getPrimaryRank().getId().toLowerCase()).getPermissions()) {
-						if (perm.equalsIgnoreCase("*")) {
-							player.setOp(true);
-						} else {
-							attachment.setPermission(perm, true);
-						}
-					}
-					if (plugin.getIdToRank().get(getPrimaryRank().getId().toLowerCase()).getInherits() != null) {
-						for (String inheritRank : plugin.getIdToRank().get(getPrimaryRank().getId().toLowerCase()).getInherits()) {
-							for (String inhereRankPerm : plugin.getIdToRank().get(inheritRank.toLowerCase()).getPermissions()) {
-								attachment.setPermission(inhereRankPerm, true);
+				if(primaryRank != null) {
+					if (plugin.getIdToRank().containsKey(getPrimaryRank().getId().toLowerCase())) {
+						for (String perm : plugin.getIdToRank().get(getPrimaryRank().getId().toLowerCase()).getPermissions()) {
+							if (perm.equalsIgnoreCase("*")) {
+								player.setOp(true);
+							} else {
+								attachment.setPermission(perm, true);
 							}
-							if (plugin.getIdToRank().get(inheritRank.toLowerCase()).getInherits() != null) {
-								for (String tmp : plugin.getIdToRank().get(inheritRank.toLowerCase()).getPermissions()) {
-									attachment.setPermission(tmp, true);
+						}
+						if (plugin.getIdToRank().get(getPrimaryRank().getId().toLowerCase()).getInherits() != null) {
+							for (String inheritRank : plugin.getIdToRank().get(getPrimaryRank().getId().toLowerCase()).getInherits()) {
+								for (String inhereRankPerm : plugin.getIdToRank().get(inheritRank.toLowerCase()).getPermissions()) {
+									attachment.setPermission(inhereRankPerm, true);
 								}
 								if (plugin.getIdToRank().get(inheritRank.toLowerCase()).getInherits() != null) {
-									for (String inhereRank : plugin.getIdToRank().get(inheritRank.toLowerCase()).getInherits()) {
-										if (plugin.getIdToRank().get(inhereRank.toLowerCase()).getPermissions() != null) {
-											for (String inhereRankPerm : plugin.getIdToRank().get(inhereRank.toLowerCase()).getPermissions()) {
-												if (inhereRankPerm != null) {
-													attachment.setPermission(inhereRankPerm, true);
+									for (String tmp : plugin.getIdToRank().get(inheritRank.toLowerCase()).getPermissions()) {
+										attachment.setPermission(tmp, true);
+									}
+									if (plugin.getIdToRank().get(inheritRank.toLowerCase()).getInherits() != null) {
+										for (String inhereRank : plugin.getIdToRank().get(inheritRank.toLowerCase()).getInherits()) {
+											if (plugin.getIdToRank().get(inhereRank.toLowerCase()).getPermissions() != null) {
+												for (String inhereRankPerm : plugin.getIdToRank().get(inhereRank.toLowerCase()).getPermissions()) {
+													if (inhereRankPerm != null) {
+														attachment.setPermission(inhereRankPerm, true);
+													}
 												}
 											}
 										}
@@ -121,9 +122,9 @@ public class User {
 								}
 							}
 						}
+					} else {
+						System.out.println("Joueur a un rank (primary) qui n'a pas été set dans la config. UUID: " + uuid);
 					}
-				} else {
-					System.out.println("Joueur a un rank (primary) qui n'a pas été set dans la config. UUID: " + uuid);
 				}
 
 				//

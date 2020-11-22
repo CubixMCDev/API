@@ -42,11 +42,6 @@ public class Set {
     }
 
     public void setRank(UUID playerUUID, String rank, boolean isPrimary) {
-        if(Bukkit.getPlayer(playerUUID).isOnline()) {
-            if( plugin.getIdToRank().get(rank) != null) {
-                Bukkit.getPlayer(playerUUID).kickPlayer("§eNouveau rank : " + plugin.getIdToRank().get("rank").getRankToStringWithColor());
-            }
-        }
         if(isPrimary) {
             plugin.getDatabaseManager().performAsyncUpdate("UPDATE players SET primary_rank = ? WHERE uuid = ?", rank, playerUUID.toString());
         } else {

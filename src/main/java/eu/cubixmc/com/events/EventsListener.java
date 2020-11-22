@@ -27,9 +27,9 @@ public class EventsListener implements Listener {
 	
 	@EventHandler
 	public void onQuit(PlayerQuitEvent e) {
-		//User user = plugin.getUserManager().getUser(e.getPlayer().getUniqueId());
-		//plugin.getUserManager().saveUser(user);
-		//plugin.getUserManager().removeUser(e.getPlayer().getUniqueId());
+		User user = plugin.getUserManager().getUser(e.getPlayer().getUniqueId());
+		plugin.getUserManager().saveUser(user);
+		plugin.getUserManager().removeUser(e.getPlayer().getUniqueId());
 	}
 
 

@@ -93,7 +93,6 @@ public class Get {
         return ChatColor.valueOf(plugin.getConfig().getString("ranks." + getRankID(playerUUID) + ".rankColor"));
     }
 
-    //exp
     public int getExp(UUID playerUUID) {
         if(Bukkit.getPlayer(playerUUID).isOnline()) {
             User user = plugin.getUserManager().getUser(playerUUID);

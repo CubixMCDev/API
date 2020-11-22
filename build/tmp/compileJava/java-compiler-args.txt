@@ -43,4 +43,3 @@ C:\\Users\\yoris\\Documents\\Dossiers-Fichiers\\Développements\\IntelliJ\\CubixM
 C:\\Users\\yoris\\Documents\\Dossiers-Fichiers\\Développements\\IntelliJ\\CubixMC\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\sql\\FixedCachedRowSetImpl.java
 C:\\Users\\yoris\\Documents\\Dossiers-Fichiers\\Développements\\IntelliJ\\CubixMC\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\sql\\MysqlManager.java
 C:\\Users\\yoris\\Documents\\Dossiers-Fichiers\\Développements\\IntelliJ\\CubixMC\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\sql\\QueryCallback.java
-C:\\Users\\yoris\\Documents\\Dossiers-Fichiers\\Développements\\IntelliJ\\CubixMC\\CubixAPI\\src\\main\\java\\eu\\cubixmc\\com\\tasks\\RemoveUser.java
