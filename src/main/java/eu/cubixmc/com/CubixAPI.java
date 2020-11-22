@@ -110,7 +110,7 @@ public class CubixAPI extends JavaPlugin implements Listener {
 			idToRank.put(getConfig().getString("ranks." + s + ".id").toLowerCase(), rank);
 		}
 		if (defaultRank == null) {
-			System.out.println("Aucun rank par default n'est set !");
+			System.out.println("Aucun rank par default n'est définit !");
 			Bukkit.getPluginManager().disablePlugin(this);
 		}
 	}

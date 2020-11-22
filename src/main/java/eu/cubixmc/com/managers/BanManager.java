@@ -66,7 +66,7 @@ public class BanManager implements CommandExecutor {
                         }
                     }
                    
-                    banPlayer(sender, targetUUID, target.getName(), raison.toString(), false, days, hours, minutes, categorie);
+                    banPlayer(sender, targetUUID, target.getName(), raison.toString(), days, hours, minutes, categorie);
                 }
             }
                
@@ -111,7 +111,7 @@ public class BanManager implements CommandExecutor {
                     }
                 }
                
-                banPlayer(sender, targetUUID, target.getName(), raison.toString(), true, 0, 0, 0, 1);
+                banPlayer(sender, targetUUID, target.getName(), raison.toString(), 6205, 0, 0, 1);
                
             }
            
@@ -180,7 +180,7 @@ public class BanManager implements CommandExecutor {
 		
 	}
 
-	public void banPlayer(CommandSender sender, UUID targetUUID, String targetName, String raison, boolean isDefinitif, int timeAsDays, int timeAsHours, int timeAsMinutes, int categorie){
+	public void banPlayer(CommandSender sender, UUID targetUUID, String targetName, String raison, int timeAsDays, int timeAsHours, int timeAsMinutes, int categorie){
 		
 		if(isBanned(targetUUID)){
             sender.sendMessage(plugin.prefixError+ChatColor.RED+"Erreur: le joueur a déjà été banni.");
@@ -188,14 +188,14 @@ public class BanManager implements CommandExecutor {
         }
        
         sender.sendMessage(plugin.prefix+ChatColor.YELLOW+"Vous avez banni le joueur "+ChatColor.GOLD+targetName+ChatColor.YELLOW+" pour: '"+ChatColor.GOLD+ raison+ChatColor.YELLOW+"'.");
-       
+
         /*
         String timeH = "17 YEAR";
        
         if(!isDefinitif){
             timeH = timeAsHours +" HOUR";
         } 2880
-        */ 
+        */
         
        int timeO = timeAsDays * 1440 + timeAsHours * 60 + timeAsMinutes;
        String timeOverall = timeO + " MINUTE";
