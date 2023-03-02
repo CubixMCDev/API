@@ -29,9 +29,6 @@ tasks.withType(Test) {
 end uft-8
  */
 
-group = 'cubixmc.com'
-sourceCompatibility = '1.8'
-
 repositories {
     mavenLocal()
 
